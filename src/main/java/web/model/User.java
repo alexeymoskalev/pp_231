@@ -6,38 +6,37 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Column(name = "name")
-    private String name;
-    @Column(name = "lastName")
+    private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
-    @Column(name = "salary")
-    private int salary;
 
-    public User (){}
-
-    public User (String name, String lastName, int salary) {
-        this.name = name;
-        this.lastName = lastName;
-        this.salary = salary;
+    public User() {
     }
 
-    public int getId() {
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -48,11 +47,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

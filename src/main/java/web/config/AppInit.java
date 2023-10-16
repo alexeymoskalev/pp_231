@@ -24,13 +24,14 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new String[] {"/"};
     }
 
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        super.onStartup(servletContext);
-        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
+    @Override
+    public void onStartup(ServletContext aServletContext) throws ServletException {
+        super.onStartup(aServletContext);
+        FilterRegistration.Dynamic encodingFilter = aServletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
         encodingFilter.setInitParameter("encoding", "UTF-8");
         encodingFilter.setInitParameter("forceEncoding", "true");
         encodingFilter.addMappingForUrlPatterns(null, true, "/*");
-        servletContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter())
+        aServletContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter()) //добавление фильтра, который передаст запрос в нужный метод контроллера
                 .addMappingForUrlPatterns(null, true, "/*");
     }
 
