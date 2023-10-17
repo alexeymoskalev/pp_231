@@ -24,8 +24,9 @@
       <td th:text="${user.getFirstName()}"></td>
       <td th:text="${user.getLastName()}"></td>
       <td>
-        <a th:href="@{/users/edit/{id}(id=${user.getId()})}">Edit</a>
-        <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+        <a th:href="@{/users/edit(id=${user.getId()})}">Edit</a>
+        <form th:method="DELETE" th:action="@{/users}" th:target="@{/users}">
+          <input type="hidden" name="id" th:value="${user.getId()}"/>
           <input type="submit" value="Delete"/>
         </form>
       </td>
