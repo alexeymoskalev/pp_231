@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Update user</title>
@@ -8,10 +7,11 @@
 <body>
 
 <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+    <input type="hidden" name="id" th:value="${user.getId()}"/>
     <label for="name">Enter name:</label>
     <input type="text" th:field="*{firstName}" id="name"/>
     <br/>
-    <label for="name">Enter lastname:</label>
+    <label for="lastname">Enter lastname:</label>
     <input type="text" th:field="*{lastName}" id="lastname"/>
     <br/>
     <input type="submit" value="Update"/>
